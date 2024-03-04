@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tabs template-1</title>
+  </head>
+  <body>
+    <style>
+      *,
+      *::after,
+      *::before {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+      }
+      .wrapper {
+        margin-top: 5vh;
+      }
+      .tab-btn {
+        outline: none;
+        border: 1px solid #000;
+        background: none;
+        padding: 20px;
+        cursor: pointer;
+        transition: color 0.3s;
+      }
+      .tab-btn:hover {
+        color: green;
+      }
+      .tab-btn--active {
+        pointer-events: none;
+        color: green;
+      }
+      .tab-pane:not(.tab-pane--show) {
+        display: none;
+      }
+    </style>
+    <div class="wrapper">
+      <div class="tab">
+        <div class="tab-nav">
+          <button
+            class="tab-btn tab-btn--active"
+            data-button="content-1"
+            type="button"
+          >
+            Вкладка 1
+          </button>
+          <button class="tab-btn" data-button="content-2" type="button">
+            Вкладка 2
+          </button>
+          <button class="tab-btn" data-button="content-3" type="button">
+            Вкладка 3
+          </button>
+        </div>
+        <div class="tab-content">
+          <div class="tab-pane tab-pane--show" id="content-1">Содержимое 1</div>
+          <div class="tab-pane" id="content-2">Содержимое 2</div>
+          <div class="tab-pane" id="content-3">Содержимое 3</div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const tabBtns = document.querySelectorAll(".tab-btn");
+      const tabContent = document.querySelectorAll(".tab-pane");
+
+      function open(target) {
+        const tabTarget = target.currentTarget;
+        const button = tabTarget.dataset.button;
+        tabBtns.forEach((btn) => {
+          btn.classList.remove("tab-btn--active");
+        });
+        tabTarget.classList.add("tab-btn--active");
+        tabContent.forEach((content) => {
+          content.classList.remove("tab-pane--show");
+        });
+
+        document.querySelector(`#${button}`).classList.add("tab-pane--show");
+      }
+
+      tabBtns.forEach((btn) => {
+        btn.addEventListener("click", open);
+      });
+    </script>
+  </body>
+</html>

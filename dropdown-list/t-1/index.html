@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dropdown list template-1</title>
+  </head>
+  <body>
+    <style>
+      *,
+      *::after,
+      *::before {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      h1 {
+        margin-bottom: 25px;
+      }
+
+      .container {
+        width: 100%;
+        max-width: 1200px;
+        padding: 0 20px;
+        margin: 0 auto;
+      }
+
+      .container > .form-group {
+        margin-bottom: 25px;
+      }
+
+      .dropdown {
+        position: relative;
+      }
+
+      .dropdown__button {
+        position: relative;
+        display: block;
+        width: 100%;
+        text-align: left;
+
+        background: #fff;
+        border: 1px solid #7e9bbd;
+        border-radius: 6px;
+        height: 46px;
+
+        padding: 13px 35px 13px 20px;
+
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 20px;
+
+        cursor: pointer;
+      }
+
+      .dropdown__button:focus,
+      .dropdown__button--active {
+        outline: none;
+        box-shadow: 0px 0px 0px 4px rgba(176, 198, 225, 0.6);
+      }
+
+      .dropdown__button::after {
+        content: url(./arrow.svg);
+        position: absolute;
+        top: 50%;
+        right: 15px;
+        transform: translateY(-42%) rotate(180deg);
+        pointer-events: none;
+        transition: transform 0.3s;
+      }
+
+      .dropdown__button--active.dropdown__button::after {
+        transform: translateY(-42%) rotate(0deg);
+      }
+
+      .dropdown__list {
+        display: none;
+        position: absolute;
+        left: 0;
+        top: 50px;
+        list-style-type: none;
+        background-color: #fff;
+        box-shadow: 0 4px 8px rgba(176, 198, 225, 0.6);
+        overflow: hidden;
+        border-radius: 6px;
+        width: 100%;
+        z-index: 1;
+      }
+
+      .dropdown__list--visible {
+        display: block;
+      }
+
+      .dropdown__list-item {
+        border: 1px solid #7e9bbd;
+        border-bottom: 0;
+        padding: 13px 20px;
+        cursor: pointer;
+      }
+
+      .dropdown__list-item:first-child {
+        border-radius: 6px 6px 0 0;
+      }
+
+      .dropdown__list-item:last-child {
+        border-radius: 0 0 6px 6px;
+        border-bottom: 1px solid #7e9bbd;
+      }
+
+      .dropdown__list-item:hover {
+        background-color: rgba(176, 198, 225, 0.6);
+      }
+
+      .dropdown__input-hidden {
+        display: none;
+      }
+    </style>
+    <div class="container">
+      <h1>Шаблон</h1>
+      <div class="form-group">
+        <div class="dropdown">
+          <button class="dropdown__button">Заметки</button>
+          <ul class="dropdown__list">
+            <li data-value="exampleFi" class="dropdown__list-item">
+              Заметка 1
+            </li>
+            <li data-value="exampleTw" class="dropdown__list-item">
+              Заметка 2
+            </li>
+            <li data-value="exampleTh" class="dropdown__list-item">
+              Заметка 3
+            </li>
+            <li data-value="exampleFo" class="dropdown__list-item">
+              Заметка 4
+            </li>
+          </ul>
+          <input
+            class="dropdown__input-hidden"
+            type="text"
+            name="select-category"
+            value=""
+          />
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="dropdown">
+          <button class="dropdown__button">Заметки</button>
+          <ul class="dropdown__list">
+            <li data-value="exampleFi" class="dropdown__list-item">
+              Заметка 1
+            </li>
+            <li data-value="exampleTw" class="dropdown__list-item">
+              Заметка 2
+            </li>
+            <li data-value="exampleTh" class="dropdown__list-item">
+              Заметка 3
+            </li>
+            <li data-value="exampleFo" class="dropdown__list-item">
+              Заметка 4
+            </li>
+          </ul>
+          <input
+            class="dropdown__input-hidden"
+            type="text"
+            name="select-category"
+            value=""
+          />
+        </div>
+      </div>
+    </div>
+    <script>
+      //Полифил
+      if (window.NodeList && !NodeList.prototype.forEach) {
+        NodeList.prototype.forEach = function (callback, thisArg) {
+          thisArg = thisArg || window;
+          for (var i = 0; i < this.length; i++) {
+            callback.call(thisArg, this[i], i, this);
+          }
+        };
+      }
+
+      document
+        .querySelectorAll(".dropdown")
+        .forEach(function (dropDownWrapper) {
+          const dropDownBtn =
+            dropDownWrapper.querySelector(".dropdown__button");
+          const dropDownList = dropDownWrapper.querySelector(".dropdown__list");
+          const dropDownListItems = dropDownList.querySelectorAll(
+            ".dropdown__list-item"
+          );
+          const dropwDownInput = dropDownWrapper.querySelector(
+            ".dropdown__input-hidden"
+          );
+
+          dropDownBtn.addEventListener("click", () => {
+            dropDownList.classList.toggle("dropdown__list--visible");
+            dropDownBtn.classList.toggle("dropdown__button--active");
+          });
+
+          dropDownListItems.forEach(function (element) {
+            element.addEventListener("click", function (e) {
+              e.stopPropagation();
+              dropDownBtn.innerText = this.innerText;
+              dropDownBtn.focus();
+              dropwDownInput.value = this.dataset.value;
+              dropDownList.classList.remove("dropdown__list--visible");
+              dropDownBtn.classList.remove("dropdown__button--active");
+            });
+          });
+
+          document.addEventListener("click", function (e) {
+            if (e.target !== dropDownBtn) {
+              dropDownList.classList.remove("dropdown__list--visible");
+              dropDownBtn.classList.remove("dropdown__button--active");
+            }
+          });
+
+          document.addEventListener("keydown", function (e) {
+            if (e.key === "Tab" || e.key === "Escape") {
+              dropDownList.classList.remove("dropdown__list--visible");
+              dropDownBtn.classList.remove("dropdown__button--active");
+            }
+          });
+        });
+    </script>
+  </body>
+</html>
