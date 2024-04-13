@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moving header template-1</title>
+</head>
+<body>
+    <style>
+        *,
+        *::after,
+        *::before{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: sans-serif;
+            font-weight: bold;
+            text-align: center;
+        }
+        .header{
+            background-color: aquamarine;
+            color: #000;
+            font-size: 36px;
+            padding: 25px;
+        }
+        #content{
+            width: 100%;
+            height: 350px;
+        }
+        header{
+            position: fixed;
+	        left: 0;
+	        top: 0;
+	        width: 100%;
+	        -webkit-transition: top 0.4s;
+	        -moz-transition: top 0.4s;
+	        -o-transition: top 0.4s;
+	        transition: top 0.4s;
+        }
+        body {
+            padding-top: 150px;
+        }
+        .fixed-header header {
+	        top: -150px;
+        }
+        .fixed-header .show {
+	     top: 0;
+        }
+    </style>
+    <div class="wrapper">
+        <header class="header">
+            header
+        </header>
+        <main>
+            <div id="content">content</div>
+            <div id="content">content</div>
+            <div id="content">content</div>
+            <div id="content">content</div>
+            <div id="content">content</div>
+            <div id="content">content</div>
+        </main>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script type="text/javascript">
+    $(document).ready(function(){ //Вызов функции по загрузке интерфейса
+      var tempScrollTop, currentScrollTop = $(window).scrollTop(); //объявление переменных и присвоение им значений
+      $(window).scroll(function(){ //Вызов функции при прокрутке страницы
+        currentScrollTop = $(window).scrollTop(); //присвоение переменной нового значения
+          if (currentScrollTop > $('header').height()) { //Проверка условия 'переменная больше высоты шапки'
+            $('body').addClass('fixed-header'); // создание класса 'fixed-header' в селекторе 'body'
+            if ( tempScrollTop > currentScrollTop ) { //Проверка условия 'значение переменной до вызова функции больше значения после её вызова'
+              $('header').addClass('show'); //создание класса 'show' в селекторе 'header'
+            } else { // выполнение, если второе условие не прошло проверку
+              $('header').removeClass('show'); //удаление класса 'show' в селекторе 'header'
+            }
+          } else { // выполнение, если первое условие не прошло проверку
+            $('body').removeClass('fixed-header'); // удаление класса 'fixed-header' в селекторе 'body'
+            $('header').removeClass('show'); //удаление класса 'show' в селекторе 'header'
+          }
+            tempScrollTop = currentScrollTop; //присвоение одной переменной значение другой
+      });
+    });
+    </script>
+    <cite>https://rband.pro/useful/scripts-plugins/vsplyvayushchaya-navigaciya-instrukciya - источник шаблона</cite>
+</body>
+</html>
