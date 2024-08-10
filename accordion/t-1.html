@@ -3,21 +3,21 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Accordion</title>
+    <title>Accordion template-1</title>
   </head>
   <body>
     <style>
       *,
       *::after,
       *::before {
-        margin: 0;
-        padding: 0;
         box-sizing: border-box;
+        padding: 0;
+        margin: 0;
       }
       .container {
         max-width: 650px;
-        margin-top: 50px;
         margin-inline: auto;
+        margin-top: 50px;
       }
       .accordion {
         width: 100%;
@@ -30,19 +30,19 @@
       .accordion__title {
         position: relative;
         padding: 10px 20px;
-        background-color: #fff;
-        border: 1px solid #000;
         color: #000;
         cursor: pointer;
+        background-color: #fff;
+        border: 1px solid #000;
         transition: background-color ease 0.2s;
       }
       .accordion__title::after {
-        content: "+";
         position: absolute;
         top: 50%;
         right: 20px;
-        transform: translateY(-50%);
+        content: "+";
         transition: transform ease 0.2s;
+        transform: translateY(-50%);
       }
       .accordion.active .accordion__title {
         background-color: aquamarine;
@@ -52,9 +52,9 @@
       }
       .accordion__content {
         position: relative;
-        background-color: #fff;
-        overflow: hidden;
         max-height: 0;
+        overflow: hidden;
+        background-color: #fff;
         transition: ease 0.2s;
       }
       .accordion__content p {
@@ -129,7 +129,7 @@
       //   currentAccrodion.classList.contains("active")
       //     ? (currentContent.style.maxHeight =
       //         currentContent.scrollHeight + "px")
-      //     : (currentContent.style.maxHeight = 0);
+      //     : (currentContent.style.maxHeight = 0);currentAccrodion.classList.containscurrentContent.style.maxHeightcurrentContent.scrollHeight
       // };
 
       const accordionHandler = (e) => {
@@ -153,6 +153,7 @@
           ? (currentContent.style.maxHeight =
               currentContent.scrollHeight + "px")
           : (currentContent.style.maxHeight = 0);
+        currentContent.style.maxHeightcurrentContent.scrollHeight;
       };
 
       accordions.forEach((accordion) => {
