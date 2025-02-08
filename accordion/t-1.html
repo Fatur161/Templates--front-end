@@ -4,63 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Accordion template-1</title>
+    <link rel="stylesheet" href="t-1.css">
   </head>
   <body>
-    <style>
-      *,
-      *::after,
-      *::before {
-        box-sizing: border-box;
-        padding: 0;
-        margin: 0;
-      }
-      .container {
-        max-width: 650px;
-        margin-inline: auto;
-        margin-top: 50px;
-      }
-      .accordion {
-        width: 100%;
-        margin-bottom: 25px;
-        border-radius: 25px;
-      }
-      .accordion:last-child {
-        margin-bottom: 0;
-      }
-      .accordion__title {
-        position: relative;
-        padding: 10px 20px;
-        color: #000;
-        cursor: pointer;
-        background-color: #fff;
-        border: 1px solid #000;
-        transition: background-color ease 0.2s;
-      }
-      .accordion__title::after {
-        position: absolute;
-        top: 50%;
-        right: 20px;
-        content: "+";
-        transition: transform ease 0.2s;
-        transform: translateY(-50%);
-      }
-      .accordion.active .accordion__title {
-        background-color: aquamarine;
-      }
-      .accordion.active .accordion__title::after {
-        transform: translateY(-50%) rotate(-45deg);
-      }
-      .accordion__content {
-        position: relative;
-        max-height: 0;
-        overflow: hidden;
-        background-color: #fff;
-        transition: ease 0.2s;
-      }
-      .accordion__content p {
-        padding: 20px;
-      }
-    </style>
     <div class="container">
       <div class="accordion">
         <div class="accordion__title">Question №1</div>
@@ -101,64 +47,6 @@
       >
     </div>
 
-    <script>
-      /*
-        Taken from https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach
-      */
-
-      if (!Array.prototype.forEach) {
-        Array.prototype.forEach = function (fn, scope) {
-          "use strict";
-          var i, len;
-          for (i = 0, len = this.length; i < len; ++i) {
-            if (i in this) {
-              fn.call(scope, this[i], i, this);
-            }
-          }
-        };
-      }
-
-      const accordions = document.querySelectorAll(".accordion__title");
-
-      //Если не нужно закрывать предыдущие
-      // const accordionHandler = (e) => {
-      //   e.preventDefault();
-      //   const currentAccrodion = e.target.closest(".accordion");
-      //   const currentContent = e.target.nextElementSibling;
-      //   currentAccrodion.classList.toggle("active");
-      //   currentAccrodion.classList.contains("active")
-      //     ? (currentContent.style.maxHeight =
-      //         currentContent.scrollHeight + "px")
-      //     : (currentContent.style.maxHeight = 0);currentAccrodion.classList.containscurrentContent.style.maxHeightcurrentContent.scrollHeight
-      // };
-
-      const accordionHandler = (e) => {
-        e.preventDefault();
-
-        accordions.forEach((accordionTitle) => {
-          const accordion = accordionTitle.closest(".accordion");
-          if (accordion !== e.target.closest(".accordion")) {
-            accordion.classList.remove("active");
-            const content = accordionTitle.nextElementSibling;
-            content.style.maxHeight = 0;
-          }
-        });
-
-        // Логика для текущего аккордеона
-        const currentAccordion = e.target.closest(".accordion");
-        const currentContent = e.target.nextElementSibling;
-
-        currentAccordion.classList.toggle("active");
-        currentAccordion.classList.contains("active")
-          ? (currentContent.style.maxHeight =
-              currentContent.scrollHeight + "px")
-          : (currentContent.style.maxHeight = 0);
-        currentContent.style.maxHeightcurrentContent.scrollHeight;
-      };
-
-      accordions.forEach((accordion) => {
-        accordion.addEventListener("click", accordionHandler);
-      });
-    </script>
+    <script src="t-1.js"></script>
   </body>
 </html>

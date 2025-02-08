@@ -1,0 +1,253 @@
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+.wrapper{
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    margin-top: 35px;
+    max-width: 1200px;
+    margin-inline: auto;
+    padding-left: 25px;
+}
+/* Скрываем стандартный чекбокс */
+.custom-checkbox input[type="checkbox"] {
+    display: none;
+}
+
+/* Создаем кастомный чекбокс */
+.custom-checkbox label {
+    position: relative;
+    padding-left: 30px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.custom-checkbox label::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    border: 2px solid #ccc;
+    background-color: #fff;
+}
+
+/* Отображаем галочку при активации */
+.custom-checkbox input[type="checkbox"]:checked + label::after {
+    content: '✔';
+    position: absolute;
+    left: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 14px;
+    color: #fff;
+}
+
+.custom-checkbox input[type="checkbox"]:checked + label::before {
+    background-color: #4CAF50;
+    border-color: #4CAF50;
+}
+.animated-checkbox input[type="checkbox"] {
+    display: none;
+}
+
+.animated-checkbox label {
+    position: relative;
+    padding-left: 30px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.animated-checkbox label::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    border: 2px solid #ccc;
+    background-color: #fff;
+    transition: all 0.3s ease;
+}
+
+.animated-checkbox input[type="checkbox"]:checked + label::before {
+    background-color: #2196F3;
+    border-color: #2196F3;
+}
+
+.animated-checkbox input[type="checkbox"]:checked + label::after {
+    content: '';
+    position: absolute;
+    left: 7px;
+    top: 50%;
+    transform: translateY(-50%) rotate(45deg);
+    width: 6px;
+    height: 12px;
+    border-right: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+    animation: draw-check 0.3s ease forwards;
+}
+
+@keyframes draw-check {
+    0% {
+        width: 0;
+        height: 0;
+    }
+    100% {
+        width: 6px;
+        height: 12px;
+    }
+}
+
+.image-checkbox input[type="checkbox"] {
+    display: none;
+}
+
+.image-checkbox label {
+    position: relative;
+    padding-left: 30px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.image-checkbox label::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    background-image: url('unchecked.png');
+    background-size: cover;
+    transition: all 0.3s ease;
+}
+
+.image-checkbox input[type="checkbox"]:checked + label::before {
+    background-image: url('checked.png');
+}
+
+.shadow-checkbox input[type="checkbox"] {
+    display: none;
+}
+
+.shadow-checkbox label {
+    position: relative;
+    padding-left: 30px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.shadow-checkbox label::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    border: 2px solid #ccc;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.shadow-checkbox input[type="checkbox"]:checked + label::before {
+    background-color: #FF9800;
+    border-color: #FF9800;
+}
+
+.shadow-checkbox input[type="checkbox"]:checked + label::after {
+    content: '✔';
+    position: absolute;
+    left: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 14px;
+    color: #fff;
+}
+
+.animated-checkbox-second {
+    font-family: system-ui, sans-serif;
+    --accent: #2196F3;
+    --border: #999;
+}
+
+.animated-checkbox-second input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.animated-checkbox-second label {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    padding-left: 28px;
+    user-select: none;
+    transition: color 0.3s ease;
+}
+
+/* Кастомный чекбокс */
+.animated-checkbox-second label::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--border);
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+/* Галочка */
+.animated-checkbox-second label::after {
+    content: '';
+    position: absolute;
+    left: 6px;
+    top: 50%;
+    transform: translateY(-50%) rotate(45deg) scale(0);
+    width: 6px;
+    height: 12px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+/* Состояние checked */
+.animated-checkbox-second label:has(input:checked)::before {
+    background: var(--accent);
+    border-color: var(--accent);
+    animation: bounce 0.4s ease;
+}
+
+.animated-checkbox-second label:has(input:checked)::after {
+    opacity: 1;
+    transform: translateY(-50%) rotate(45deg) scale(1);
+}
+
+/* Hover эффект */
+.animated-checkbox-second label:hover::before {
+    border-color: var(--accent);
+}
+
+/* Фокус состояние */
+.animated-checkbox-second label:has(input:focus-visible)::before {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
