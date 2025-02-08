@@ -5,19 +5,23 @@
     padding: 0;
     margin: 0;
 }
+
 .container {
     max-width: 650px;
     margin-inline: auto;
     margin-top: 50px;
 }
+
 .accordion {
     width: 100%;
     margin-bottom: 25px;
     border-radius: 25px;
 }
+
 .accordion:last-child {
     margin-bottom: 0;
 }
+
 .accordion__title {
     position: relative;
     padding: 10px 20px;
@@ -27,6 +31,7 @@
     border: 1px solid #000;
     transition: background-color ease 0.2s;
 }
+
 .accordion__title::after {
     position: absolute;
     top: 50%;
@@ -35,12 +40,15 @@
     transition: transform ease 0.2s;
     transform: translateY(-50%);
 }
+
 .accordion.active .accordion__title {
     background-color: aquamarine;
 }
+
 .accordion.active .accordion__title::after {
     transform: translateY(-50%) rotate(-45deg);
 }
+
 .accordion__content {
     position: relative;
     max-height: 0;
@@ -48,6 +56,7 @@
     background-color: #fff;
     transition: ease 0.2s;
 }
+
 .accordion__content p {
     padding: 20px;
 }

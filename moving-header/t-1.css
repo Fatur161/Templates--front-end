@@ -8,16 +8,19 @@
     font-weight: bold;
     text-align: center;
 }
+
 .header {
     padding: 25px;
     font-size: 36px;
     color: #000;
     background-color: aquamarine;
 }
+
 .content {
     width: 100%;
     height: 350px;
 }
+
 header {
     position: fixed;
     top: 0;
@@ -28,12 +31,15 @@ header {
     -o-transition: top 0.4s;
     transition: top 0.4s;
 }
+
 body {
     padding-top: 150px;
 }
+
 .fixed-header header {
     top: -150px;
 }
+
 .fixed-header .show {
     top: 0;
 }

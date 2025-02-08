@@ -2,8 +2,8 @@
 *::after,
 *::before {
     box-sizing: border-box;
-    margin: 0;
     padding: 0;
+    margin: 0;
 }
 
 h1 {
@@ -56,7 +56,7 @@ h1 {
     top: 50%;
     right: 15px;
     pointer-events: none;
-    content: url(./arrow.svg);
+    content: url("./arrow.svg");
     transition: transform 0.3s;
     transform: translateY(-42%) rotate(180deg);
 }

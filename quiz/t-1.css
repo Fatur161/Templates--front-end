@@ -5,30 +5,34 @@
     padding: 0;
     margin: 0;
 }
+
 ul {
     list-style: none;
 }
+
 button {
-    outline: none;
-    border: none;
     font-size: 18px;
     color: #fff;
     cursor: pointer;
+    border: none;
+    outline: none;
 }
+
 .container{
     display: flex;
     max-width: 1200px;
 }
+
 .quiz__container {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     align-items: center;
-    background-color: rgb(193, 235, 193);
-    padding: 25px;
+    justify-content: space-between;
     max-width: 400px;
+    padding: 25px;
     /*min-height: 300px;*/
     margin: 0 auto;
+    background-color: rgb(193, 235, 193);
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 
@@ -37,30 +41,38 @@ button {
     footer{
         width: 100%;
     }
+
     header{
         margin-bottom: 15px;
     }
+
     main {
         flex-grow: 1;
         margin-bottom: 5px;
     }
 }
+
 .quiz__btn {
     padding: 3px 9px;
     border-radius: 5px;
 }
+
 .quiz__btn--default {
     background-color: rgb(65, 65, 253);
 }
+
 .quiz__btn--right {
     background-color: rgb(29, 180, 82);
 }
+
 .quiz__btn--wrong {
     background-color: rgb(223, 41, 41);
 }
+
 .quiz__btn--unactive {
     background-color: rgb(115, 113, 113);
 }
+
 .quiz__list li:not(:last-child) {
     margin-bottom: 7px;
 }
